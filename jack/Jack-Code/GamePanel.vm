@@ -1,0 +1,728 @@
+function GamePanel.new 0
+    push constant 2
+    call Memory.alloc 1
+    pop pointer 0
+    call Board.new 0
+    pop this 0
+    push constant 1
+    pop this 1
+    push pointer 0
+    return
+function GamePanel.run 4
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 1
+label GamePanel_0
+    push local 1
+    not
+    not
+    if-goto GamePanel_1
+    push this 0
+    call Board.clear 1
+    pop temp 0
+    push constant 1
+    pop this 1
+    push constant 0
+    pop local 2
+    push constant 0
+    pop local 3
+    push constant 0
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 28
+    call String.new 1
+    push constant 77
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 112
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 46
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 80
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 118
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 78
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 109
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 112
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 106
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 46
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    call Output.println 0
+    pop temp 0
+    push constant 21
+    call String.new 1
+    push constant 74
+    call String.appendChar 2
+    push constant 49
+    call String.appendChar 2
+    push constant 61
+    call String.appendChar 2
+    push constant 88
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 74
+    call String.appendChar 2
+    push constant 50
+    call String.appendChar 2
+    push constant 61
+    call String.appendChar 2
+    push constant 79
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 40
+    call String.appendChar 2
+    push constant 81
+    call String.appendChar 2
+    push constant 61
+    call String.appendChar 2
+    push constant 81
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 41
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+label GamePanel_2
+    push local 2
+    not
+    not
+    if-goto GamePanel_3
+    push constant 0
+    pop local 0
+label GamePanel_4
+    push local 0
+    push constant 0
+    eq
+    not
+    if-goto GamePanel_5
+    call Keyboard.keyPressed 0
+    pop local 0
+    goto GamePanel_4
+label GamePanel_5
+    push local 0
+    push constant 113
+    eq
+    not
+    if-goto GamePanel_7
+    push constant 1
+    neg
+    pop local 2
+    push constant 1
+    neg
+    pop local 1
+    goto GamePanel_6
+label GamePanel_7
+label GamePanel_6
+    push local 1
+    not
+    not
+    if-goto GamePanel_9
+    push local 0
+    push constant 55
+    eq
+    not
+    if-goto GamePanel_11
+    push pointer 0
+    push constant 0
+    call GamePanel.playerMove 2
+    pop temp 0
+    goto GamePanel_10
+label GamePanel_11
+label GamePanel_10
+    push local 0
+    push constant 56
+    eq
+    not
+    if-goto GamePanel_13
+    push pointer 0
+    push constant 1
+    call GamePanel.playerMove 2
+    pop temp 0
+    goto GamePanel_12
+label GamePanel_13
+label GamePanel_12
+    push local 0
+    push constant 57
+    eq
+    not
+    if-goto GamePanel_15
+    push pointer 0
+    push constant 2
+    call GamePanel.playerMove 2
+    pop temp 0
+    goto GamePanel_14
+label GamePanel_15
+label GamePanel_14
+    push local 0
+    push constant 52
+    eq
+    not
+    if-goto GamePanel_17
+    push pointer 0
+    push constant 3
+    call GamePanel.playerMove 2
+    pop temp 0
+    goto GamePanel_16
+label GamePanel_17
+label GamePanel_16
+    push local 0
+    push constant 53
+    eq
+    not
+    if-goto GamePanel_19
+    push pointer 0
+    push constant 4
+    call GamePanel.playerMove 2
+    pop temp 0
+    goto GamePanel_18
+label GamePanel_19
+label GamePanel_18
+    push local 0
+    push constant 54
+    eq
+    not
+    if-goto GamePanel_21
+    push pointer 0
+    push constant 5
+    call GamePanel.playerMove 2
+    pop temp 0
+    goto GamePanel_20
+label GamePanel_21
+label GamePanel_20
+    push local 0
+    push constant 49
+    eq
+    not
+    if-goto GamePanel_23
+    push pointer 0
+    push constant 6
+    call GamePanel.playerMove 2
+    pop temp 0
+    goto GamePanel_22
+label GamePanel_23
+label GamePanel_22
+    push local 0
+    push constant 50
+    eq
+    not
+    if-goto GamePanel_25
+    push pointer 0
+    push constant 7
+    call GamePanel.playerMove 2
+    pop temp 0
+    goto GamePanel_24
+label GamePanel_25
+label GamePanel_24
+    push local 0
+    push constant 51
+    eq
+    not
+    if-goto GamePanel_27
+    push pointer 0
+    push constant 8
+    call GamePanel.playerMove 2
+    pop temp 0
+    goto GamePanel_26
+label GamePanel_27
+label GamePanel_26
+    push pointer 0
+    call GamePanel.checkWin 1
+    pop local 3
+    push local 3
+    push constant 0
+    eq
+    not
+    not
+    if-goto GamePanel_29
+    push constant 20
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 16
+    call String.new 1
+    push constant 86
+    call String.appendChar 2
+    push constant 73
+    call String.appendChar 2
+    push constant 67
+    call String.appendChar 2
+    push constant 84
+    call String.appendChar 2
+    push constant 79
+    call String.appendChar 2
+    push constant 73
+    call String.appendChar 2
+    push constant 82
+    call String.appendChar 2
+    push constant 69
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 74
+    call String.appendChar 2
+    push constant 79
+    call String.appendChar 2
+    push constant 85
+    call String.appendChar 2
+    push constant 69
+    call String.appendChar 2
+    push constant 85
+    call String.appendChar 2
+    push constant 82
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push local 3
+    call Output.printInt 1
+    pop temp 0
+    push constant 1
+    neg
+    pop local 2
+    goto GamePanel_28
+label GamePanel_29
+    push this 0
+    call Board.isFull 1
+    not
+    if-goto GamePanel_31
+    push constant 20
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 11
+    call String.new 1
+    push constant 77
+    call String.appendChar 2
+    push constant 65
+    call String.appendChar 2
+    push constant 84
+    call String.appendChar 2
+    push constant 67
+    call String.appendChar 2
+    push constant 72
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 78
+    call String.appendChar 2
+    push constant 85
+    call String.appendChar 2
+    push constant 76
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 33
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push constant 1
+    neg
+    pop local 2
+    goto GamePanel_30
+label GamePanel_31
+label GamePanel_30
+label GamePanel_28
+    goto GamePanel_8
+label GamePanel_9
+label GamePanel_8
+label GamePanel_32
+    push local 0
+    push constant 0
+    eq
+    not
+    not
+    if-goto GamePanel_33
+    call Keyboard.keyPressed 0
+    pop local 0
+    goto GamePanel_32
+label GamePanel_33
+    goto GamePanel_2
+label GamePanel_3
+    push local 1
+    not
+    not
+    if-goto GamePanel_35
+    call Output.println 0
+    pop temp 0
+    push constant 28
+    call String.new 1
+    push constant 69
+    call String.appendChar 2
+    push constant 78
+    call String.appendChar 2
+    push constant 84
+    call String.appendChar 2
+    push constant 82
+    call String.appendChar 2
+    push constant 69
+    call String.appendChar 2
+    push constant 69
+    call String.appendChar 2
+    push constant 58
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 82
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 106
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 47
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 81
+    call String.appendChar 2
+    push constant 58
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 81
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push constant 0
+    pop local 0
+label GamePanel_36
+    push local 0
+    push constant 128
+    eq
+    not
+    push local 0
+    push constant 113
+    eq
+    not
+    and
+    not
+    if-goto GamePanel_37
+    call Keyboard.keyPressed 0
+    pop local 0
+    goto GamePanel_36
+label GamePanel_37
+    push local 0
+    push constant 113
+    eq
+    not
+    if-goto GamePanel_39
+    push constant 1
+    neg
+    pop local 1
+    goto GamePanel_38
+label GamePanel_39
+label GamePanel_38
+    goto GamePanel_34
+label GamePanel_35
+label GamePanel_34
+    goto GamePanel_0
+label GamePanel_1
+    call Screen.clearScreen 0
+    pop temp 0
+    push constant 0
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 11
+    call String.new 1
+    push constant 65
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 118
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 33
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push constant 0
+    return
+function GamePanel.playerMove 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push argument 1
+    push this 1
+    call Board.placeMove 3
+    not
+    if-goto GamePanel_41
+    push this 1
+    push constant 1
+    eq
+    not
+    if-goto GamePanel_43
+    push constant 2
+    pop this 1
+    goto GamePanel_42
+label GamePanel_43
+    push constant 1
+    pop this 1
+label GamePanel_42
+    goto GamePanel_40
+label GamePanel_41
+label GamePanel_40
+    push constant 0
+    return
+function GamePanel.checkWin 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    push constant 0
+    push constant 1
+    push constant 2
+    call GamePanel.checkLine 4
+    not
+    if-goto GamePanel_45
+    push this 0
+    push constant 0
+    call Board.getValue 2
+    return
+    goto GamePanel_44
+label GamePanel_45
+label GamePanel_44
+    push pointer 0
+    push constant 3
+    push constant 4
+    push constant 5
+    call GamePanel.checkLine 4
+    not
+    if-goto GamePanel_47
+    push this 0
+    push constant 3
+    call Board.getValue 2
+    return
+    goto GamePanel_46
+label GamePanel_47
+label GamePanel_46
+    push pointer 0
+    push constant 6
+    push constant 7
+    push constant 8
+    call GamePanel.checkLine 4
+    not
+    if-goto GamePanel_49
+    push this 0
+    push constant 6
+    call Board.getValue 2
+    return
+    goto GamePanel_48
+label GamePanel_49
+label GamePanel_48
+    push pointer 0
+    push constant 0
+    push constant 3
+    push constant 6
+    call GamePanel.checkLine 4
+    not
+    if-goto GamePanel_51
+    push this 0
+    push constant 0
+    call Board.getValue 2
+    return
+    goto GamePanel_50
+label GamePanel_51
+label GamePanel_50
+    push pointer 0
+    push constant 1
+    push constant 4
+    push constant 7
+    call GamePanel.checkLine 4
+    not
+    if-goto GamePanel_53
+    push this 0
+    push constant 1
+    call Board.getValue 2
+    return
+    goto GamePanel_52
+label GamePanel_53
+label GamePanel_52
+    push pointer 0
+    push constant 2
+    push constant 5
+    push constant 8
+    call GamePanel.checkLine 4
+    not
+    if-goto GamePanel_55
+    push this 0
+    push constant 2
+    call Board.getValue 2
+    return
+    goto GamePanel_54
+label GamePanel_55
+label GamePanel_54
+    push pointer 0
+    push constant 0
+    push constant 4
+    push constant 8
+    call GamePanel.checkLine 4
+    not
+    if-goto GamePanel_57
+    push this 0
+    push constant 0
+    call Board.getValue 2
+    return
+    goto GamePanel_56
+label GamePanel_57
+label GamePanel_56
+    push pointer 0
+    push constant 2
+    push constant 4
+    push constant 6
+    call GamePanel.checkLine 4
+    not
+    if-goto GamePanel_59
+    push this 0
+    push constant 2
+    call Board.getValue 2
+    return
+    goto GamePanel_58
+label GamePanel_59
+label GamePanel_58
+    push constant 0
+    return
+function GamePanel.checkLine 3
+    push argument 0
+    pop pointer 0
+    push this 0
+    push argument 1
+    call Board.getValue 2
+    pop local 0
+    push this 0
+    push argument 2
+    call Board.getValue 2
+    pop local 1
+    push this 0
+    push argument 3
+    call Board.getValue 2
+    pop local 2
+    push local 0
+    push constant 0
+    eq
+    not
+    if-goto GamePanel_61
+    push constant 0
+    return
+    goto GamePanel_60
+label GamePanel_61
+label GamePanel_60
+    push local 0
+    push local 1
+    eq
+    push local 1
+    push local 2
+    eq
+    and
+    not
+    if-goto GamePanel_63
+    push constant 1
+    neg
+    return
+    goto GamePanel_62
+label GamePanel_63
+label GamePanel_62
+    push constant 0
+    return
+function GamePanel.dispose 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    call Board.dispose 1
+    pop temp 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return

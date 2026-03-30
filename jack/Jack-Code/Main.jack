@@ -1,0 +1,16 @@
+class Main {
+    function void main() {
+        var GamePanel gamePanel;
+        
+        // Initialisation
+        let gamePanel = GamePanel.new();
+        
+        // Lancement de la boucle de jeu
+        do gamePanel.run();
+        
+        // Nettoyage de la mémoire (Important en Jack !)
+        do gamePanel.dispose();
+        
+        return;
+    }
+}

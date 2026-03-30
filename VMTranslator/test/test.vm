@@ -1,0 +1,13 @@
+push constant 7
+
+push pointer 1
+push pointer 0
+
+push this 10
+
+push that 3
+
+push argument 1
+
+push local 3
+

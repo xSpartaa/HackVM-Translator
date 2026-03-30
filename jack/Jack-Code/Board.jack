@@ -1,0 +1,89 @@
+class Board {
+    field Array grid; // Stocke 0 (vide), 1 (X) ou 2 (O)
+
+    constructor Board new() {
+        let grid = Array.new(9);
+        do clear();
+        return this;
+    }
+
+    method void clear() {
+        var int i;
+        let i = 0;
+        // Initialiser le tableau à 0
+        while (i < 9) {
+            let grid[i] = 0;
+            let i = i + 1;
+        }
+        
+        do Screen.clearScreen();
+        do Screen.setColor(true); // Noir
+        
+        // Dessiner la grille (Cases de 50x50)
+        // Offset X = 150, Offset Y = 50
+        do Screen.drawLine(200, 50, 200, 200); // Verticale 1
+        do Screen.drawLine(250, 50, 250, 200); // Verticale 2
+        do Screen.drawLine(150, 100, 300, 100); // Horizontale 1
+        do Screen.drawLine(150, 150, 300, 150); // Horizontale 2
+        
+        return;
+    }
+
+    method boolean placeMove(int location, int player) {
+        // Si la case n'est pas vide (0), on retourne faux
+        if (~(grid[location] = 0)) {
+            return false;
+        }
+        
+        let grid[location] = player;
+        do drawSymbol(location, player);
+        return true;
+    }
+
+    method void drawSymbol(int location, int player) {
+        var int row, col;
+        var int x, y;
+        
+        let row = location / 3;
+        let col = location - (row * 3);
+
+        // Centre de la case : Offset + (Index * Taille) + Demi-Taille
+        let x = 150 + (col * 50) + 25;
+        let y = 50 + (row * 50) + 25;
+
+        do Screen.setColor(true);
+
+        if (player = 1) { 
+            // Dessiner un X
+            do Screen.drawLine(x - 15, y - 15, x + 15, y + 15);
+            do Screen.drawLine(x + 15, y - 15, x - 15, y + 15);
+        }
+        else {
+            // Dessiner un O
+            do Screen.drawCircle(x, y, 15);
+        }
+        return;
+    }
+
+    method int getValue(int location) {
+        return grid[location];
+    }
+
+    method boolean isFull() {
+        var int i;
+        let i = 0;
+        while (i < 9) {
+            // Si on trouve une case vide (0), le plateau n'est pas plein
+            if (getValue(i) = 0) { return false; }
+            let i = i + 1;
+        }
+        // Aucune case vide trouvée
+        return true;
+    }
+
+    method void dispose() {
+        do grid.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+}

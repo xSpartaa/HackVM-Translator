@@ -1,0 +1,152 @@
+class GamePanel {
+    field Board board;
+    field int currentPlayer; // 1 ou 2
+
+    constructor GamePanel new() {
+        let board = Board.new();
+        let currentPlayer = 1; // Le joueur 1 commence
+        return this;
+    }
+
+method void run() {
+        var char key;
+        var boolean exitApp;    // Variable pour quitter totalement le jeu
+        var boolean gameEnded;  // Variable pour la fin d'une manche
+        var int winner;
+        
+        let exitApp = false;
+
+        // Boucle principale de l'application
+        while (~exitApp) {
+            
+            // --- INITIALISATION ---
+            do board.clear();       
+            let currentPlayer = 1; 
+            let gameEnded = false;
+            let winner = 0;
+
+            do Output.moveCursor(0,0);
+            do Output.printString("Morpion. Pav Num pour jouer.");
+            do Output.println();
+            do Output.printString("J1=X J2=O (Q=Quitter)");
+
+            // --- BOUCLE DE JEU (MANCHE) ---
+            while (~gameEnded) {
+                let key = 0;
+                
+                // Attente d'une touche
+                while (key = 0) {
+                    let key = Keyboard.keyPressed();
+                }
+
+                // CAS 1 : Quitter pendant le jeu
+                if (key = 113) {         // 113 est le code ASCII pour 'q'
+                    let gameEnded = true; 
+                    let exitApp = true; // On signale qu'on veut tout arrêter
+                }
+
+                // Gestion des coups (seulement si on ne quitte pas)
+                if (~exitApp) {
+                    if (key = 55) { do playerMove(0); } // 7
+                    if (key = 56) { do playerMove(1); } // 8
+                    if (key = 57) { do playerMove(2); } // 9
+                    if (key = 52) { do playerMove(3); } // 4
+                    if (key = 53) { do playerMove(4); } // 5
+                    if (key = 54) { do playerMove(5); } // 6
+                    if (key = 49) { do playerMove(6); } // 1
+                    if (key = 50) { do playerMove(7); } // 2
+                    if (key = 51) { do playerMove(8); } // 3
+                    
+                    // Vérification Victoire
+                    let winner = checkWin();
+                    if (~(winner = 0)) {
+                        do Output.moveCursor(20, 0);
+                        do Output.printString("VICTOIRE JOUEUR ");
+                        do Output.printInt(winner);
+                        let gameEnded = true;
+                    }
+                    else {
+                        // Vérification Match Nul
+                        if (board.isFull()) {
+                            do Output.moveCursor(20, 0);
+                            do Output.printString("MATCH NUL !");
+                            let gameEnded = true;
+                        }
+                    }
+                }
+
+                // Anti-rebond (Attendre relâchement touche)
+                while (~(key = 0)) {
+                    let key = Keyboard.keyPressed();
+                }
+            } 
+
+            // --- MENU FIN DE PARTIE ---
+            // On affiche le menu seulement si le joueur n'a pas déjà demandé à quitter (Q)
+            if (~exitApp) {
+                do Output.println();
+                do Output.printString("ENTREE: Rejouer / Q: Quitter");
+                
+                let key = 0;
+                // On attend soit ENTREE (128) soit q (113)
+                while (~(key = 128) & ~(key = 113)) {
+                    let key = Keyboard.keyPressed();
+                }
+
+                // CAS 2 : Quitter depuis le menu de fin
+                if (key = 113) { 
+                    let exitApp = true; 
+                }
+            }
+        }
+        
+        // Quand exitApp est vrai, on sort de la boucle et on arrive ici.
+        // On nettoie l'écran une dernière fois et on quitte.
+        do Screen.clearScreen();
+        do Output.moveCursor(0,0);
+        do Output.printString("Au revoir !");
+        return;
+    }
+    method void playerMove(int location) {
+        if (board.placeMove(location, currentPlayer)) {
+            // Si le coup est valide, on change de joueur
+            if (currentPlayer = 1) { let currentPlayer = 2; }
+            else { let currentPlayer = 1; }
+        }
+        return;
+    }
+
+    method int checkWin() {
+        // Lignes
+        if (checkLine(0, 1, 2)) { return board.getValue(0); }
+        if (checkLine(3, 4, 5)) { return board.getValue(3); }
+        if (checkLine(6, 7, 8)) { return board.getValue(6); }
+        // Colonnes
+        if (checkLine(0, 3, 6)) { return board.getValue(0); }
+        if (checkLine(1, 4, 7)) { return board.getValue(1); }
+        if (checkLine(2, 5, 8)) { return board.getValue(2); }
+        // Diagonales
+        if (checkLine(0, 4, 8)) { return board.getValue(0); }
+        if (checkLine(2, 4, 6)) { return board.getValue(2); }
+        return 0;
+    }
+
+    method boolean checkLine(int a, int b, int c) {
+        var int v1, v2, v3;
+        let v1 = board.getValue(a);
+        let v2 = board.getValue(b);
+        let v3 = board.getValue(c);
+        
+
+
+        if (v1 = 0) { return false; } 
+        if ((v1 = v2) & (v2 = v3)) { return true; }
+        return false;
+    }
+
+    method void dispose() {
+        do board.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+}

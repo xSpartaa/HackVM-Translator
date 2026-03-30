@@ -1,0 +1,231 @@
+function Board.new 0
+    push constant 1
+    call Memory.alloc 1
+    pop pointer 0
+    push constant 9
+    call Array.new 1
+    pop this 0
+    push pointer 0
+    call Board.clear 1
+    pop temp 0
+    push pointer 0
+    return
+function Board.clear 1
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label Board_0
+    push local 0
+    push constant 9
+    lt
+    not
+    if-goto Board_1
+    push local 0
+    push this 0
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Board_0
+label Board_1
+    call Screen.clearScreen 0
+    pop temp 0
+    push constant 1
+    neg
+    call Screen.setColor 1
+    pop temp 0
+    push constant 200
+    push constant 50
+    push constant 200
+    push constant 200
+    call Screen.drawLine 4
+    pop temp 0
+    push constant 250
+    push constant 50
+    push constant 250
+    push constant 200
+    call Screen.drawLine 4
+    pop temp 0
+    push constant 150
+    push constant 100
+    push constant 300
+    push constant 100
+    call Screen.drawLine 4
+    pop temp 0
+    push constant 150
+    push constant 150
+    push constant 300
+    push constant 150
+    call Screen.drawLine 4
+    pop temp 0
+    push constant 0
+    return
+function Board.placeMove 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    push constant 0
+    eq
+    not
+    not
+    if-goto Board_3
+    push constant 0
+    return
+    goto Board_2
+label Board_3
+label Board_2
+    push argument 1
+    push this 0
+    add
+    push argument 2
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push pointer 0
+    push argument 1
+    push argument 2
+    call Board.drawSymbol 3
+    pop temp 0
+    push constant 1
+    neg
+    return
+function Board.drawSymbol 4
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push constant 3
+    call Math.divide 2
+    pop local 0
+    push argument 1
+    push local 0
+    push constant 3
+    call Math.multiply 2
+    sub
+    pop local 1
+    push constant 150
+    push local 1
+    push constant 50
+    call Math.multiply 2
+    add
+    push constant 25
+    add
+    pop local 2
+    push constant 50
+    push local 0
+    push constant 50
+    call Math.multiply 2
+    add
+    push constant 25
+    add
+    pop local 3
+    push constant 1
+    neg
+    call Screen.setColor 1
+    pop temp 0
+    push argument 2
+    push constant 1
+    eq
+    not
+    if-goto Board_5
+    push local 2
+    push constant 15
+    sub
+    push local 3
+    push constant 15
+    sub
+    push local 2
+    push constant 15
+    add
+    push local 3
+    push constant 15
+    add
+    call Screen.drawLine 4
+    pop temp 0
+    push local 2
+    push constant 15
+    add
+    push local 3
+    push constant 15
+    sub
+    push local 2
+    push constant 15
+    sub
+    push local 3
+    push constant 15
+    add
+    call Screen.drawLine 4
+    pop temp 0
+    goto Board_4
+label Board_5
+    push local 2
+    push local 3
+    push constant 15
+    call Screen.drawCircle 3
+    pop temp 0
+label Board_4
+    push constant 0
+    return
+function Board.getValue 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    return
+function Board.isFull 1
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label Board_6
+    push local 0
+    push constant 9
+    lt
+    not
+    if-goto Board_7
+    push pointer 0
+    push local 0
+    call Board.getValue 2
+    push constant 0
+    eq
+    not
+    if-goto Board_9
+    push constant 0
+    return
+    goto Board_8
+label Board_9
+label Board_8
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Board_6
+label Board_7
+    push constant 1
+    neg
+    return
+function Board.dispose 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    call Array.dispose 1
+    pop temp 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return
